@@ -1,0 +1,59 @@
+import Image from "next/image";
+import { Route } from "../lib/definition";
+import { notoserifhk } from "./font";
+
+export const DashBoardListItem = ({ Route }: { Route: Route }) => {
+  //data:  route_no; dest_ch,dest_en; train_length; time_ch en;
+
+  return (
+    <ul className="p-3 flex sm:gap-6 gap-0 sm:text-2xl justify-center items-center text-blue-950 border-white border bg-white even:bg-gray-200">
+      <div className=" font-bold flex-1 ">{Route.route_no}</div>
+      <div className="flex flex-col leading-none font-semibold flex-1 grow-[2] ">
+        <p className={`  ${notoserifhk.className}`}>{Route.dest_ch}</p>
+        <p className="text-sm">{Route.dest_en}</p>
+      </div>
+
+      <div className="flex-1 flex gap-1 overflow-hidden">
+        {Route.train_length >= 1 ? (
+          <Image
+            width={50}
+            height={10}
+            src="/lrt-cartoon.png"
+            alt="train icon reveals train length"
+          />
+        ) : null}
+        {Route.train_length === 2 ? (
+          <Image
+            width={50}
+            height={10}
+            src="/lrt-cartoon.png"
+            alt="train icon reveals train length"
+          />
+        ) : null}
+      </div>
+      <div className=" flex gap-1 items-center flex-1 justify-end">
+        {Route.time_en === "-" ? (
+          <p className={`font-semibold ${notoserifhk.className} sm:text-xl`}>
+            已離開
+          </p>
+        ) : Route.time_en === "Arriving" ? (
+          <p className={`font-semibold ${notoserifhk.className} sm:text-xl`}>
+            即將抵達
+          </p>
+        ) : Route.time_en === "Departing" ? (
+          <p className={`font-semibold ${notoserifhk.className} sm:text-xl`}>
+            正在離開
+          </p>
+        ) : (
+          <>
+            <p className={`font-bold`}>{Route.time_ch.match(/(\d+)/)?.[0]}</p>
+            <div className="flex flex-col leading-none text-sm font-semibold">
+              <p className={`${notoserifhk.className}`}>分鐘</p>
+              <p>min</p>
+            </div>
+          </>
+        )}
+      </div>
+    </ul>
+  );
+};

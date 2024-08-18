@@ -1,5 +1,7 @@
+import { DashBoardListItem } from "@/app/ui/item";
 import { fetchLrtDataByStationId } from "@/app/lib/data";
 import { Platform } from "@/app/lib/definition";
+import { notosans } from "@/app/ui/font";
 import { notFound } from "next/navigation";
 export default async function Page({ params }: { params: { id: number } }) {
   const lrtData = await fetchLrtDataByStationId(params.id);
@@ -8,7 +10,7 @@ export default async function Page({ params }: { params: { id: number } }) {
     notFound();
   }
   return (
-    <main>
+    <main className={` ${notosans.className} `}>
       {lrtData.status === 1 ? <p>normal</p> : <p>error</p>}
       <p>{lrtData.platform_id}</p>
       <p>{lrtData.system_time}</p>
@@ -24,23 +26,24 @@ export default async function Page({ params }: { params: { id: number } }) {
               </p>
               <ul>
                 <li>
-                  {plat.route_list?.map((route) => (
-                    <ul key={route.route_no} className="flex gap-4">
-                      <p>{route.route_no}</p>
-                      <div className="flex flex-col gap-1">
-                        <p>{route.dest_ch}</p>
-                        <p>{route.dest_en}</p>
-                      </div>
-                      <div className="flex gap-1">
-                        <p>{route.time_en}</p>
-                        <p>{route.time_ch}</p>
-                      </div>
-                      <p>{route.train_length}卡</p>
-                      <p>
-                        {route.arrival_departure === "D" ? "出發" : "抵站"}時間
-                      </p>
-                      <p>{route.stop}</p>
-                    </ul>
+                  {plat.route_list?.map((route, i) => (
+                    <DashBoardListItem Route={route} key={route.route_no + i} />
+                    // <ul key={route.route_no} className="flex gap-4">
+                    //   <p>{route.route_no}</p>
+                    //   <div className="flex flex-col gap-1">
+                    //     <p>{route.dest_ch}</p>
+                    //     <p>{route.dest_en}</p>
+                    //   </div>
+                    //   <div className="flex gap-1">
+                    //     <p>{route.time_en}</p>
+                    //     <p>{route.time_ch}</p>
+                    //   </div>
+                    //   <p>{route.train_length}卡</p>
+                    //   <p>
+                    //     {route.arrival_departure === "D" ? "出發" : "抵站"}時間
+                    //   </p>
+                    //   <p>{route.stop}</p>
+                    // </ul>
                   ))}
                 </li>
               </ul>
