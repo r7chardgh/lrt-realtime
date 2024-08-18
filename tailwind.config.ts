@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: { lrt_yellow: "rgb(var(--lrt-yellow))", lrt_blue: "rgb(var(--lrt-blue))" },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
