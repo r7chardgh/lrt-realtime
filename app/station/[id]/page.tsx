@@ -5,7 +5,7 @@ import { Platform, Station } from "@/app/lib/definition";
 import { notosans, notoserifhk } from "@/app/ui/font";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
-
+export const runtime = "edge";
 export default function Page({ params }: { params: { id: number } }) {
   const [lrtData, setLrtData] = useState<Station | null>(null);
   const [refreshToken, setRefreshToken] = useState(Math.random());
