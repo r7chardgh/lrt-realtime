@@ -53,7 +53,9 @@ export default function Page({ params }: { params: { id: number } }) {
                   </p>
                   <p>Chung Fu #{params.id}</p>
                 </div>
-                <p>{lrtData.system_time.split(" ")[1]}</p>
+                <p className=" text-lg font-semibold">
+                  {lrtData.system_time.split(" ")[1]}
+                </p>
               </ul>
               <ul>
                 <li>
@@ -80,7 +82,7 @@ export default function Page({ params }: { params: { id: number } }) {
                   </ul>
                   {plat.end_service_status && (
                     <div className="flex flex-col bg-white text-blue-950 p-3">
-                      <p>服務已經暫停</p>
+                      <p>服務已經結束</p>
                       <p>service is ended</p>
                     </div>
                   )}

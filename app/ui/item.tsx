@@ -38,17 +38,24 @@ export const DashBoardListItem = ({ Route }: { Route: Route }) => {
       </div>
       <div className=" flex gap-1 items-center flex-1 justify-end">
         {Route.time_en === "-" ? (
-          <p className={`font-semibold ${notoserifhk.className} sm:text-xl`}>
-            已離開
-          </p>
+          <div className="flex flex-col font-semibold items-end leading-none">
+            <p className={` ${notoserifhk.className} sm:text-xl`}>已到站</p>
+            <p className="text-sm">Arrived</p>
+          </div>
         ) : Route.time_en === "Arriving" ? (
-          <p className={`font-semibold ${notoserifhk.className} sm:text-xl`}>
-            即將抵達
-          </p>
+          <div className="flex flex-col font-semibold items-end leading-none">
+            <p className={`font-semibold ${notoserifhk.className} sm:text-xl`}>
+              即將抵達
+            </p>
+            <p className="text-sm">Arriving</p>
+          </div>
         ) : Route.time_en === "Departing" ? (
-          <p className={`font-semibold ${notoserifhk.className} sm:text-xl`}>
-            正在離開
-          </p>
+          <div className="flex flex-col font-semibold items-end leading-none">
+            <p className={`font-semibold ${notoserifhk.className} sm:text-xl`}>
+              正在離開
+            </p>
+            <p className="text-sm">Departing</p>
+          </div>
         ) : (
           <>
             <p className={`font-bold`}>{Route.time_ch.match(/(\d+)/)?.[0]}</p>
