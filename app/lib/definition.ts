@@ -7,6 +7,7 @@ export type Station = {
 export type Platform = {
   platform_id: number;
   route_list: Route[];
+  end_service_status:number;
 };
 
 export type Route = {

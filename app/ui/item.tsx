@@ -7,9 +7,9 @@ export const DashBoardListItem = ({ Route }: { Route: Route }) => {
 
   return (
     <ul className="p-3 flex sm:gap-6 gap-0 sm:text-2xl justify-center items-center text-blue-950  even:bg-white bg-gray-200">
-      {Route.stop === 0 ? (
-        <div className="p-4 h-0 bg-red-600 relative flex justify-center items-center">
-          <p className=" absolute">x</p>
+      {Route.stop === 1 ? (
+        <div className="p-4 h-0 bg-red-600 relative flex justify-center items-center rounded-full">
+          <p className=" absolute text-white">x</p>
         </div>
       ) : null}
       <div className=" font-bold flex-1 ">{Route.route_no}</div>

@@ -5,6 +5,7 @@ import { Platform, Station } from "@/app/lib/definition";
 import { notosans, notoserifhk } from "@/app/ui/font";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
+
 export default function Page({ params }: { params: { id: number } }) {
   const [lrtData, setLrtData] = useState<Station | null>(null);
   const [refreshToken, setRefreshToken] = useState(Math.random());
@@ -21,6 +22,8 @@ export default function Page({ params }: { params: { id: number } }) {
   if (lrtData.status === 0) {
     notFound();
   }
+  console.log(lrtData);
+
   return (
     <main className={` ${notosans.className} bg-blue-950 text-white`}>
       {lrtData.status === 1 ? <p>normal</p> : <p>error</p>}
@@ -30,7 +33,7 @@ export default function Page({ params }: { params: { id: number } }) {
         {lrtData.platform_list.map((plat) => {
           return (
             <li key={plat.platform_id}>
-              <ul className="flex justify-between items-center p-4">
+              <ul className="flex justify-between items-center p-3">
                 <div className="flex gap-2 items-center">
                   <div className="h-0 p-4 bg-lrt_yellow text-blue-950 relative flex justify-center items-center rounded-full">
                     <p className=" absolute text-xl font-bold">
@@ -75,6 +78,12 @@ export default function Page({ params }: { params: { id: number } }) {
                       <p>Next Train</p>
                     </div>
                   </ul>
+                  {plat.end_service_status && (
+                    <div className="flex flex-col bg-white text-blue-950 p-3">
+                      <p>服務已經暫停</p>
+                      <p>service is ended</p>
+                    </div>
+                  )}
                   {plat.route_list?.map((route, i) => (
                     <DashBoardListItem Route={route} key={route.route_no + i} />
                   ))}
