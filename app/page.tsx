@@ -4,7 +4,6 @@ import Link from "next/link";
 export const runtime = "edge";
 export default async function Home() {
   const lrtData = await fetchLrtDataByStationId(1);
-  console.log(lrtData);
 
   return (
     <main>

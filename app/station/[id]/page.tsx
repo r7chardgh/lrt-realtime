@@ -22,7 +22,6 @@ export default function Page({ params }: { params: { id: number } }) {
   if (lrtData.status === 0) {
     notFound();
   }
-  console.log(lrtData);
 
   return (
     <main className={` ${notosans.className} bg-blue-950 text-white`}>
@@ -89,6 +88,7 @@ export default function Page({ params }: { params: { id: number } }) {
                   {plat.route_list?.map((route, i) => (
                     <DashBoardListItem Route={route} key={route.route_no + i} />
                   ))}
+                  <DashBoardListItem Route={{ route_no: "751p", stop: 1 }} />
                 </li>
               </ul>
             </li>

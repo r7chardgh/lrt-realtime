@@ -11,12 +11,12 @@ export type Platform = {
 };
 
 export type Route = {
-  train_length: number;
-  arrival_departure: string;
-  dest_en: string;
-  dest_ch: string;
-  time_en: string;
-  time_ch: string;
+  train_length?: number;
+  arrival_departure?: string;
+  dest_en?: string;
+  dest_ch?: string;
+  time_en?: string;
+  time_ch?: string;
   route_no: string;
   stop: number;
 };
