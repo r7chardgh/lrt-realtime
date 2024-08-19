@@ -88,7 +88,6 @@ export default function Page({ params }: { params: { id: number } }) {
                   {plat.route_list?.map((route, i) => (
                     <DashBoardListItem Route={route} key={route.route_no + i} />
                   ))}
-                  <DashBoardListItem Route={{ route_no: "751p", stop: 1 }} />
                 </li>
               </ul>
             </li>
