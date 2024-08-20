@@ -76,7 +76,7 @@ export default function Page({ params }: { params: { id: number } }) {
                       <p className={`${notoserifhk.className} sm:text-lg`}>
                         下班車
                       </p>
-                      <p>Next Train</p>
+                      <p className=" text-right">Next Train</p>
                     </div>
                   </ul>
                   {plat.end_service_status && (
