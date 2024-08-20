@@ -3,7 +3,6 @@ import Link from "next/link";
 import useSWR from "swr";
 export default function Page({ params }: { params: { code: string } }) {
   const fetcher = (url: any) => fetch(url).then((r) => r.json());
-  console.log(params.code);
   const { data } = useSWR(`/api/route/${params.code}`, fetcher);
 
   return (

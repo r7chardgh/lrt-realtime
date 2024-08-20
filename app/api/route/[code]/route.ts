@@ -6,5 +6,5 @@ export async function GET(
   { params }: { params: { code: string } }
 ) {
   const data = await getStationJsonByPapa();
-  return Response.json(data.filter((route: any[]) => route[0] === params.code));
+  return Response.json(data.filter((route: any) => route[0] === params.code));
 }
