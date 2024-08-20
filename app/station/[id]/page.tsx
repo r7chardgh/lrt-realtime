@@ -3,12 +3,15 @@ import { DashBoardListItem } from "@/app/ui/item";
 import { fetchLrtDataByStationId } from "@/app/lib/data";
 import { Platform, Station } from "@/app/lib/definition";
 import { notosans, notoserifhk } from "@/app/ui/font";
-import { notFound } from "next/navigation";
+import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 export const runtime = "edge";
 export default function Page({ params }: { params: { id: number } }) {
+  const searchParams = useSearchParams();
   const [lrtData, setLrtData] = useState<Station | null>(null);
   const [refreshToken, setRefreshToken] = useState(Math.random());
+  const station_cn = searchParams.get("st_cn");
+  const station_en = searchParams.get("st_en");
   useEffect(() => {
     fetchLrtDataByStationId(params.id)
       .then(setLrtData)
@@ -48,9 +51,9 @@ export default function Page({ params }: { params: { id: number } }) {
                 </div>
                 <div className="flex flex-col leading-none font-semibold items-center">
                   <p className={`${notoserifhk.className} text-lg sm:text-2xl`}>
-                    頌富
+                    {station_cn}
                   </p>
-                  <p>Chung Fu #{params.id}</p>
+                  <p>{station_en}</p>
                 </div>
                 <p className=" text-lg font-semibold">
                   {lrtData.system_time.split(" ")[1]}
