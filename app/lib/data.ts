@@ -11,7 +11,7 @@ export async function fetchLrtDataByStationId(sid: number) {
 
 export async function getStationJsonByPapa() {
   const lrtStationCSV = await fetch(
-    "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv"
+    "https://opendata.mtr.com.hk/data/light_rail_routes_and_stops.csv",{cache:'force-cache'}
   ).then((res) => res.text());
 
   return Papa.parse(lrtStationCSV).data;
