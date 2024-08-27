@@ -1,1 +1,57 @@
-["505","507","610","614","614P","615","615P","705","706","751","761P"]
+[
+    {
+        "route_code": "505",
+        "route_cn": "三聖至兆康",
+        "route_en":"Sam Shing to Siu Hong"
+    },
+    {
+        "route_code": "507",
+        "route_cn": "屯門碼頭至田景",
+        "route_en":"Tuen Mun Ferry Pier to Tin King"
+    },
+    {
+        "route_code": "610",
+        "route_cn": "屯門碼頭至元朗",
+        "route_en":"Tuen Mun Ferry Pier to Yuen Long"
+    },
+    {
+        "route_code": "614",
+        "route_cn": "屯門碼頭至元朗",
+        "route_en":"Tuen Mun Ferry Pier to Yuen Long"
+    },
+    {
+        "route_code": "614p",
+        "route_cn": "屯門碼頭至兆康",
+        "route_en":"Tuen Mun Ferry Pier to Siu Hong"
+    },
+    {
+        "route_code": "615",
+        "route_cn": "屯門碼頭至元朗",
+        "route_en":"Tuen Mun Ferry Pier to Yuen Long"
+    },
+    {
+        "route_code": "615p",
+        "route_cn": "屯門碼頭至兆康",
+        "route_en":"Tuen Mun Ferry Pier to Siu Hong"
+    },
+    {
+        "route_code": "705",
+        "route_cn": "天水圍循環綫",
+        "route_en":"Tin Shui Wai Circular"
+    },
+    {
+        "route_code": "706",
+        "route_cn": "天水圍循環綫",
+        "route_en":"Tin Shui Wai Circular"
+    },
+    {
+        "route_code": "751",
+        "route_cn": "天逸至友愛",
+        "route_en":"Tin Yat to Yau Oi"
+    },
+    {
+        "route_code": "761p",
+        "route_cn": "天逸至元朗",
+        "route_en":"Sam Shing to Siu Hong"
+    }
+]

@@ -1,6 +1,7 @@
 import { fetchLrtDataByStationId } from "./lib/data";
 import Link from "next/link";
 import RouteList from "@/route.json";
+import { notosans, notoserifhk } from "@/app/ui/font";
 export const runtime = "edge";
 export default async function Home() {
   const colorVariants: any = {
@@ -21,17 +22,17 @@ export default async function Home() {
       <div className="flex flex-col gap-4 flex-wrap w-full">
         {RouteList.map((r) => (
           <Link
-            key={r}
-            href={`/route/${r}`}
-            className="w-full flex-1 p-6  flex justify-center items-center gap-2"
+            key={r.route_code}
+            href={`/route/${r.route_code}`}
+            className="w-full flex-1 p-6  flex justify-center items-center gap-4  font-semibold "
           >
             <p
-              className={`w-24 text-lg rounded-3xl border-4 flex justify-center outline ${
-                colorVariants[r.toLowerCase()]
-              }`}
+              className={`w-24 text-lg rounded-3xl border-4 flex justify-center outline ${colorVariants[r.route_code.toLowerCase()]
+                } ${notosans.className}`}
             >
-              {r}
+              {r.route_code}
             </p>
+            <p className={`${notoserifhk.className} text-xl`}>{r.route_cn}</p>
           </Link>
         ))}
       </div>
