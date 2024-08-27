@@ -19,20 +19,23 @@ export default async function Home() {
   };
   return (
     <main className="flex justify-center items-center w-full p-12 ">
-      <div className="flex flex-col gap-4 flex-wrap w-full">
+      <div className="flex gap-4 flex-wrap justify-center">
         {RouteList.map((r) => (
           <Link
             key={r.route_code}
             href={`/route/${r.route_code}`}
-            className="w-full flex-1 p-6  flex justify-center items-center gap-4  font-semibold "
+            className="w-full lg:basis-1/3 p-6  flex items-center gap-4  font-semibold hover:bg-gray-100 justify-start"
           >
             <p
-              className={`w-24 text-lg rounded-3xl border-4 flex justify-center outline ${colorVariants[r.route_code.toLowerCase()]
+              className={`min-w-16 border-4 rounded-2xl text-sm sm:min-w-24 sm:text-lg sm:rounded-3xl sm:border-8 flex justify-center outline outline-4 ${colorVariants[r.route_code.toLowerCase()]
                 } ${notosans.className}`}
             >
               {r.route_code}
             </p>
-            <p className={`${notoserifhk.className} text-xl`}>{r.route_cn}</p>
+            <div className="flex flex-col w-auto">
+              <p className={`${notoserifhk.className} sm:text-xl`}>{r.route_cn}</p>
+              <p className={`${notosans.className} sm:text-xl`}>{r.route_en}</p>
+            </div>
           </Link>
         ))}
       </div>
