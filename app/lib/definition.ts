@@ -7,7 +7,7 @@ export type Station = {
 export type Platform = {
   platform_id: number;
   route_list: Route[];
-  end_service_status:number;
+  end_service_status: number;
 };
 
 export type Route = {
@@ -19,4 +19,10 @@ export type Route = {
   time_ch?: string;
   route_no: string;
   stop: number;
+};
+
+export type Stop = {
+  route_code: string;
+  route_cn: string;
+  route_en: string;
 };

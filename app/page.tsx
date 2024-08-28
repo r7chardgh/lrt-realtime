@@ -2,6 +2,7 @@ import { fetchLrtDataByStationId } from "./lib/data";
 import Link from "next/link";
 import RouteList from "@/route.json";
 import { notosans, notoserifhk } from "@/app/ui/font";
+import { Stop } from "./lib/definition";
 export const runtime = "edge";
 export default async function Home() {
   const colorVariants: any = {
@@ -20,20 +21,23 @@ export default async function Home() {
   return (
     <main className="flex justify-center items-center w-full p-12 ">
       <div className="flex gap-4 flex-wrap justify-center">
-        {RouteList.map((r) => (
+        {RouteList.map((r: Stop) => (
           <Link
             key={r.route_code}
             href={`/route/${r.route_code}`}
             className="w-full lg:basis-1/3 p-6  flex items-center gap-4  font-semibold hover:bg-gray-100 justify-start"
           >
             <p
-              className={`min-w-16 border-4 rounded-2xl text-sm sm:min-w-24 sm:text-lg sm:rounded-3xl sm:border-8 flex justify-center outline outline-4 ${colorVariants[r.route_code.toLowerCase()]
-                } ${notosans.className}`}
+              className={`min-w-16 border-4 rounded-2xl text-sm sm:min-w-24 sm:text-lg sm:rounded-3xl sm:border-8 flex justify-center outline outline-4 ${
+                colorVariants[r.route_code.toLowerCase()]
+              } ${notosans.className}`}
             >
               {r.route_code}
             </p>
             <div className="flex flex-col w-auto">
-              <p className={`${notoserifhk.className} sm:text-xl`}>{r.route_cn}</p>
+              <p className={`${notoserifhk.className} sm:text-xl`}>
+                {r.route_cn}
+              </p>
               <p className={`${notosans.className} sm:text-xl`}>{r.route_en}</p>
             </div>
           </Link>

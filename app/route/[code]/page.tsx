@@ -1,13 +1,29 @@
 "use client";
+import { Stop } from "@/app/lib/definition";
+import { notosans, notoserifhk } from "@/app/ui/font";
+import RouteList from "@/route.json";
 import Link from "next/link";
 import useSWR from "swr";
 export default function Page({ params }: { params: { code: string } }) {
   const fetcher = (url: any) => fetch(url).then((r) => r.json());
   const { data } = useSWR(`/api/route/${params.code}`, fetcher);
-
+  const stop = RouteList.find((r: Stop) => {
+    r.route_code;
+    return r.route_code === params.code;
+  });
   return (
-    <main>
-      <h1>ROUTE {params.code}</h1>
+    <main className="flex flex-col justify-center">
+      {!!stop && (
+        <div
+          className={`${notosans.className} flex gap-2 font-semibold items-center`}
+        >
+          <div className="flex flex-col leading-none">
+            <p className={`${notoserifhk.className} text-lg`}>輕鐵路綫</p>
+            <p>LRT Route</p>
+          </div>
+          <p className="text-lg">{stop.route_code}</p>
+        </div>
+      )}
       <div className="flex justify-center list-none">
         <li>
           {data
