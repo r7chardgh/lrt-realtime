@@ -1,12 +1,16 @@
-"use client";
+// "use client";
 import { Stop } from "@/app/lib/definition";
 import { notosans, notoserifhk } from "@/app/ui/font";
 import RouteList from "@/route.json";
 import Link from "next/link";
-import useSWR from "swr";
-export default function Page({ params }: { params: { code: string } }) {
-  const fetcher = (url: any) => fetch(url).then((r) => r.json());
-  const { data } = useSWR(`/api/route/${params.code}`, fetcher);
+// import useSWR from "swr";
+export default async function Page({ params }: { params: { code: string } }) {
+  // const fetcher = (url: any) => fetch(url).then((r) => r.json());
+  // const { data } = useSWR(`/api/route/${params.code}`, fetcher);
+  const data = await fetch(process.env.URL + `/api/route/${params.code}`).then(
+    (res) => res.json()
+  );
+
   const stop = RouteList.find((r: Stop) => {
     r.route_code;
     return r.route_code === params.code;
