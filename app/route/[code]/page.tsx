@@ -10,9 +10,9 @@ export default async function Page({ params }: { params: { code: string } }) {
   // const { data } = useSWR(`/api/route/${params.code}`, fetcher);
   console.log(getUrl(`/api/route/${params.code}`));
 
-  const data = await fetch(getUrl(`/api/route/${params.code}`)).then((res) =>
-    res.json()
-  );
+  // const data = await fetch(getUrl(`/api/route/${params.code}`)).then((res) =>
+  //   res.json()
+  // );
 
   const stop = RouteList.find((r: Stop) => {
     r.route_code;
@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { code: string } }) {
           <p className="text-lg">{stop.route_code}</p>
         </div>
       )}
-      <div className="flex justify-center list-none">
+      {/* <div className="flex justify-center list-none">
         <li>
           {data
             ? data.map((stop: any, i: number) => {
@@ -74,7 +74,7 @@ export default async function Page({ params }: { params: { code: string } }) {
               })
             : null}
         </li>
-      </div>
+      </div> */}
     </main>
   );
 }
