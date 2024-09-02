@@ -20,7 +20,7 @@
         "route_en":"Tuen Mun Ferry Pier to Yuen Long"
     },
     {
-        "route_code": "614p",
+        "route_code": "614P",
         "route_cn": "屯門碼頭至兆康",
         "route_en":"Tuen Mun Ferry Pier to Siu Hong"
     },
@@ -30,7 +30,7 @@
         "route_en":"Tuen Mun Ferry Pier to Yuen Long"
     },
     {
-        "route_code": "615p",
+        "route_code": "615P",
         "route_cn": "屯門碼頭至兆康",
         "route_en":"Tuen Mun Ferry Pier to Siu Hong"
     },
@@ -50,7 +50,7 @@
         "route_en":"Tin Yat to Yau Oi"
     },
     {
-        "route_code": "761p",
+        "route_code": "761P",
         "route_cn": "天逸至元朗",
         "route_en":"Sam Shing to Siu Hong"
     }
