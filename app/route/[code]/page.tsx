@@ -7,9 +7,9 @@ import Link from "next/link";
 export default async function Page({ params }: { params: { code: string } }) {
   // const fetcher = (url: any) => fetch(url).then((r) => r.json());
   // const { data } = useSWR(`/api/route/${params.code}`, fetcher);
-  const data = await fetch(process.env.URL + `/api/route/${params.code}`).then(
-    (res) => res.json()
-  );
+  const data = await fetch(
+    process.env.NEXT_PUBLIC_VERCEL_URL + `/api/route/${params.code}`
+  ).then((res) => res.json());
 
   const stop = RouteList.find((r: Stop) => {
     r.route_code;
