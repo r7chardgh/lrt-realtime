@@ -2,18 +2,20 @@
 import Image from "next/image";
 import { notosans, notoserifhk } from "./ui/font";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-
+import { useRouter, usePathname } from "next/navigation";
 export default function Page() {
   let pathname = usePathname().split("/").slice(0, -1).join("/");
   if (pathname.length === 0) {
     pathname = "/";
   }
 
+  const router = useRouter();
+
   return (
     <main className="flex justify-center min-h-dvh p-6 bg-gray-200">
-      <Link
-        href={pathname}
+      <div
+        // href={pathname}
+        onClick={() => router.back()}
         className="flex flex-col p-12 bg-gray-300 max-w-[30em] w-full h-auto  justify-center items-center rounded-lg gap-3"
       >
         <Image
@@ -35,7 +37,7 @@ export default function Page() {
           <p>For your sake</p>
           <p>please go back to the previous page</p>
         </div>
-      </Link>
+      </div>
     </main>
   );
 }
