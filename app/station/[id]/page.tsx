@@ -5,6 +5,9 @@ import { Platform, Station } from "@/app/lib/definition";
 import { notosans, notoserifhk } from "@/app/ui/font";
 import { notFound, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { motion, useCycle } from "framer-motion";
+
 export const runtime = "edge";
 export default function Page({ params }: { params: { id: number } }) {
   const searchParams = useSearchParams();
@@ -12,6 +15,10 @@ export default function Page({ params }: { params: { id: number } }) {
   const [refreshToken, setRefreshToken] = useState(Math.random());
   const station_cn = searchParams.get("st_cn");
   const station_en = searchParams.get("st_en");
+  const code = searchParams.get("code");
+
+  const [isOpen, toggleOpen] = useCycle(false, true);
+
   useEffect(() => {
     fetchLrtDataByStationId(params.id)
       .then(setLrtData)
@@ -26,10 +33,51 @@ export default function Page({ params }: { params: { id: number } }) {
     notFound();
   }
 
+  //framer motion variants
+
+  const variants = {
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: "-100%" },
+  };
   return (
     <main className={` ${notosans.className} bg-blue-950 text-white`}>
-      {lrtData.status === 1 ? <p>normal</p> : <p>error</p>}
-      <p>{lrtData.system_time.split(" ")[0]}</p>
+      <div className="flex justify-between p-3">
+        <motion.nav initial={false} animate={isOpen ? "open" : "closed"}>
+          <div className=" flex gap-3">
+            <button
+              className={`${
+                isOpen ? "border-lrt_yellow text-lrt_yellow" : null
+              } border-4 rounded-full w-3 h-3 p-3 flex justify-center items-center hover:border-lrt_yellow hover:text-lrt_yellow`}
+              onClick={() => toggleOpen()}
+            >
+              !
+            </button>
+            <motion.div variants={variants}>
+              <div className="flex gap-3">
+                <div className={`${notosans.className}`}>
+                  {lrtData.status === 1 ? (
+                    <>
+                      <p className={`${notoserifhk.className}`}>系統正常</p>
+                      <p>system normal</p>
+                    </>
+                  ) : (
+                    <p>error</p>
+                  )}
+                </div>
+                <p>{lrtData.system_time.split(" ")[0]}</p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.nav>
+
+        <Link
+          href={`/route/${code}`}
+          className="p-3 border-4 rounded-2xl font-semibold hover:border-lrt_yellow hover:text-lrt_yellow"
+        >
+          <p className={`${notoserifhk.className} sm:text-lg`}>返回</p>
+          <p>Back</p>
+        </Link>
+      </div>
 
       <ul>
         {lrtData.platform_list.map((plat) => {
@@ -89,7 +137,11 @@ export default function Page({ params }: { params: { id: number } }) {
                     </div>
                   )}
                   {plat.route_list?.map((route, i) => (
-                    <DashBoardListItem Route={route} key={route.route_no + i} />
+                    <DashBoardListItem
+                      Route={route}
+                      key={route.route_no + i}
+                      highlight={code}
+                    />
                   ))}
                 </li>
               </ul>

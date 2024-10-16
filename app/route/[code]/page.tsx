@@ -38,7 +38,11 @@ export default async function Page({ params }: { params: { code: string } }) {
 
   const data = await fetch(getUrl(`/api/route/${params.code}`))
     .then((res) => res.json())
-    .then((d) => parseRoute(d));
+    .then((d) =>
+      params.code === "705" || params.code === "706" ? d : parseRoute(d)
+    );
+
+  console.log(data);
 
   const stop = RouteList.find((r: Stop) => {
     r.route_code;
@@ -51,14 +55,12 @@ export default async function Page({ params }: { params: { code: string } }) {
   return (
     <main className="flex flex-col justify-center p-6">
       <div
-        className={`flex justify-between ${notosans.className} font-semibold`}
+        className={`flex justify-between ${notosans.className} text-sm sm:text-lg font-semibold`}
       >
         {!!stop && (
-          <div
-            className={`${notosans.className} flex gap-2 font-semibold items-center`}
-          >
+          <div className={`${notosans.className} flex gap-2 items-center`}>
             <div className="flex flex-col leading-none">
-              <p className={`${notoserifhk.className} sm:text-xl`}>輕鐵路綫</p>
+              <p className={`${notoserifhk.className} sm:text-lg`}>輕鐵路綫</p>
               <p>LRT Route</p>
             </div>
             <div
@@ -72,18 +74,71 @@ export default async function Page({ params }: { params: { code: string } }) {
         )}
         <Link
           href="/"
-          className="p-3 border-4 rounded-2xl font-semibold hover:border-black hover:bg-gray-100"
+          className={`p-3 border-4 rounded-2xl font-semibold hover:border-black`}
         >
           <p className={`${notoserifhk.className} sm:text-lg`}>返回</p>
           <p>Back</p>
         </Link>
       </div>
-      <div className="flex justify-center list-none">
-        {data
-          ? data.map((line: any, j: number) => {
+      <div className="flex justify-center list-none sm:gap-12">
+        {data ? (
+          params.code === "705" || params.code === "706" ? (
+            <li>
+              {data.map((stop: any, i: number) => {
+                if (!!data[i + 1] && data[i][5] === data[i + 1][5]) {
+                  return null;
+                }
+                return (
+                  <ul
+                    className={`relative  flex justify-center items-center hover:bg-gray-50 font-semibold `}
+                    key={stop[4]}
+                  >
+                    <span
+                      className={`absolute -left-1.5 h-full w-3 ${
+                        colorVariants[params.code + "bg"]
+                      }`}
+                    ></span>
+                    <span
+                      className={`absolute -left-3 w-6 h-6 bg-white rounded-full border-4 border-black  z-10`}
+                    ></span>
+                    <Link
+                      className="p-4 text-lg text-center w-full"
+                      href={{
+                        pathname: `/station/${stop[3]}`,
+                        query: {
+                          st_cn: stop[4],
+                          st_en: stop[5],
+                          code: params.code,
+                        },
+                      }}
+                    >
+                      <p
+                        className={`font-semibold text-sm ${notoserifhk.className} sm:text-xl`}
+                      >
+                        {stop[4]}
+                      </p>
+                      <p className="text-sm">{stop[5]}</p>
+                    </Link>
+                  </ul>
+                );
+              })}
+            </li>
+          ) : (
+            data.map((line: any, j: number) => {
               return line.length > 0 ? (
-                <li key={j}>
+                <li key={j} className="flex-1">
+                  <h2 className="sm:text-2xl font-semibold">
+                    <p className={`${notoserifhk.className}`}>
+                      往{line[line.length - 1][4]}
+                    </p>
+                    <p className={`${notosans.className} sm:text-lg`}>
+                      To {line[line.length - 1][5]}
+                    </p>
+                  </h2>
                   {line.map((stop: any, i: number) => {
+                    if (!!line[i + 1] && line[i][5] === line[i + 1][5]) {
+                      return null;
+                    }
                     return (
                       <ul
                         className={`relative  flex justify-center items-center hover:bg-gray-50 font-semibold `}
@@ -104,6 +159,7 @@ export default async function Page({ params }: { params: { code: string } }) {
                             query: {
                               st_cn: stop[4],
                               st_en: stop[5],
+                              code: params.code,
                             },
                           }}
                         >
@@ -120,7 +176,8 @@ export default async function Page({ params }: { params: { code: string } }) {
                 </li>
               ) : null;
             })
-          : null}
+          )
+        ) : null}
       </div>
     </main>
   );

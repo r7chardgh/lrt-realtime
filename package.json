@@ -12,6 +12,7 @@
     "deploy": "npm run pages:build && wrangler pages deploy"
   },
   "dependencies": {
+    "framer-motion": "^11.11.9",
     "next": "14.2.5",
     "papaparse": "^5.4.1",
     "react": "^18",

@@ -2,11 +2,22 @@ import Image from "next/image";
 import { Route } from "../lib/definition";
 import { notoserifhk } from "./font";
 
-export const DashBoardListItem = ({ Route }: { Route: Route }) => {
+export const DashBoardListItem = ({
+  Route,
+  highlight,
+}: {
+  Route: Route;
+  highlight?: string | null;
+}) => {
   //data:  route_no; dest_ch,dest_en; train_length; time_ch en;
+  console.log(Route);
 
   return (
-    <ul className="p-3 flex sm:gap-6 gap-0 sm:text-2xl justify-center items-center text-blue-950  even:bg-white bg-gray-200">
+    <ul
+      className={`p-3 flex sm:gap-6 gap-0 sm:text-2xl justify-center items-center text-blue-950  even:bg-white bg-gray-200 ${
+        highlight === Route.route_no && "bg-yellow-200 even:bg-yellow-200"
+      }`}
+    >
       {Route.stop === 1 ? (
         <div className="p-4 h-0 bg-red-600 relative flex justify-center items-center rounded-full mr-2 sm:mr-0">
           {/* <p className=" absolute text-white">x</p> */}
