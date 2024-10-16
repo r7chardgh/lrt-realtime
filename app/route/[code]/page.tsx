@@ -5,6 +5,7 @@ import parseRoute from "@/app/lib/parseRoute";
 import { notosans, notoserifhk } from "@/app/ui/font";
 import RouteList from "@/route.json";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 // import useSWR from "swr";
 export default async function Page({ params }: { params: { code: string } }) {
   const colorVariants: any = {
@@ -43,6 +44,10 @@ export default async function Page({ params }: { params: { code: string } }) {
     r.route_code;
     return r.route_code === params.code;
   });
+
+  if (!stop) {
+    notFound();
+  }
   return (
     <main className="flex flex-col justify-center p-6">
       <div
@@ -65,7 +70,10 @@ export default async function Page({ params }: { params: { code: string } }) {
             </div>
           </div>
         )}
-        <Link href="/" className="p-3 border-4 rounded-2xl">
+        <Link
+          href="/"
+          className="p-3 border-4 rounded-2xl font-semibold hover:border-black hover:bg-gray-100"
+        >
           <p className={`${notoserifhk.className} sm:text-lg`}>返回</p>
           <p>Back</p>
         </Link>
@@ -78,7 +86,7 @@ export default async function Page({ params }: { params: { code: string } }) {
                   {line.map((stop: any, i: number) => {
                     return (
                       <ul
-                        className={`relative  flex justify-center items-center hover:bg-gray-50 `}
+                        className={`relative  flex justify-center items-center hover:bg-gray-50 font-semibold `}
                         key={stop[4]}
                       >
                         <span

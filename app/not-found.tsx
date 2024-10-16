@@ -12,12 +12,13 @@ export default function Page() {
   const router = useRouter();
 
   return (
-    <main className="flex justify-center min-h-dvh p-6 bg-gray-200">
+    <main className="flex justify-center h-dvh p-6 bg-gray-200">
       <div
         // href={pathname}
         onClick={() => router.back()}
-        className="flex flex-col p-12 bg-gray-300 max-w-[30em] w-full h-auto  justify-center items-center rounded-lg gap-3"
+        className="flex flex-col p-12 bg-gray-300 max-w-[30em] w-full h-auto  justify-center items-center rounded-lg gap-3 cursor-pointer hover:bg-gray-400"
       >
+        <h1 className="text-6xl">404</h1>
         <Image
           width={0}
           height={0}
