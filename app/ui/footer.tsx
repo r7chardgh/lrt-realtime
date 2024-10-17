@@ -4,14 +4,6 @@ import { notoserifhk } from "./font";
 export default function Footer() {
   return (
     <footer className="bg-lrt_blue text-white py-3">
-      <p className="flex w-full justify-center">
-        <Link
-          href="https://richardtsang.vercel.app/"
-          className="hover:underline"
-        >
-          Coded & designed by Richard Tsang
-        </Link>
-      </p>
       <div className="flex w-full justify-center">
         Made with{" "}
         <svg
@@ -53,8 +45,14 @@ export default function Footer() {
             fill="url(#btt)"
           ></path>
         </svg>
-        <p className={`${notoserifhk.className}`}>{" 用心製造 "}</p>| ©
-        Copyright 2024
+        <p className={`${notoserifhk.className}`}>{" 用心製造 "}</p>&nbsp;|
+        Copyright © 2024&nbsp;
+        <Link
+          href="https://richardtsang.vercel.app/"
+          className="hover:underline"
+        >
+          Richard Tsang
+        </Link>
       </div>
     </footer>
   );
