@@ -42,7 +42,7 @@ export default async function Page({ params }: { params: { code: string } }) {
       params.code === "705" || params.code === "706" ? d : parseRoute(d)
     );
 
-  console.log(data);
+  //console.log(data);
 
   const stop = RouteList.find((r: Stop) => {
     r.route_code;

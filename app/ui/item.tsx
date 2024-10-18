@@ -10,7 +10,7 @@ export const DashBoardListItem = ({
   highlight?: string | null;
 }) => {
   //data:  route_no; dest_ch,dest_en; train_length; time_ch en;
-  console.log(Route);
+  //console.log(Route);
 
   return (
     <ul

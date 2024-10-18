@@ -12,8 +12,10 @@
     "deploy": "npm run pages:build && wrangler pages deploy"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
+    "@next/third-parties": "^14.2.15",
     "framer-motion": "^11.11.9",
-    "next": "14.2.5",
+    "next": "^14.2.15",
     "papaparse": "^5.4.1",
     "react": "^18",
     "react-dom": "^18",
